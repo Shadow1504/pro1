@@ -3,7 +3,7 @@ const axios=require("axios")
 
 exports.ind=(req,res)=>
 {
-    axios.get("http://localhost:5000/api/alldata").then((result) => {
+    axios.get("http://localhost:10000/api/alldata").then((result) => {
         res.render("index",{results:result.data});
         // console.log("come",result);     
     }).catch((err) => {
