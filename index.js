@@ -3,7 +3,7 @@ const mongoose=require('mongoose')
 const app=express();
 const bodyparser=require('body-parser')
 
-app.listen(5000,()=>
+app.listen(10000,()=>
 {
     console.log("server connected");
 })
