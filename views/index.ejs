@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>MVC Template</title>
+<style>
+    h1
+{
+    text-align: center;
+    color: chocolate;
+}
+table
+{
+    width: 80%;
+    border: 1px solid blue;
+    border-collapse: collapse;
+    margin: auto;
+    text-align: center;
+    
+}
+table ,thead ,th, tbody, tr, td
+{
+    border: 1px solid blue;
+    height: 50px;
+}
+.add a
+{
+    text-decoration: none;
+    margin-left: 135px;
+    color: blue;
+    font-weight: bold;
+}
+.delete
+{
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+    cursor: pointer;
+}
+.edit
+{
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+    cursor: pointer;
+}
+.add
+{
+    margin-top: 25px;
+}
+</style>
+</head>
+<body>
+    <h1>Employee Details</h1>
+    <table>
+        <thead>
+            <th>Employee Id</th>
+            <th>Employee Name</th>
+            <th>Email Id</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            <% results.map((output)=>{ %> 
+            <tr>
+                <td><%= output.eid %></td>
+                <td><%= output.name %></td>
+                <td><%= output.email%></td>
+                <td><a href="/edit" class="edit" data-id=<%= output._id %>>Edit</a></td>
+                <td><a class="delete" data-id=<%= output._id %> >Delete</a></td>
+            </tr>
+            <% }) %> 
+        </tbody>
+    </table>
+<div class="add">
+    <a href="/add">Click here to add New Employees</a>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script>
+    $(".delete").click(function()
+    {
+        let id = $(this).attr("data-id")
+        $.ajax({
+            "url":`http://localhost:5000/api/alldata/${id}`,
+            "method":"DELETE"
+        }).done(function(complete){
+            location.reload()
+        })
+    })
+
+    $(".edit").click(function()
+    {
+        let id = $(this).attr("data-id")
+        $.ajax({
+            "url":`http://localhost:5000/api/alldata/${id}`,
+            "method":"GET"
+        }).done(function(complete){
+            
+        })
+    })
+    
+</script>
+
+</body>
+</html>
